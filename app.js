@@ -1,0 +1,18 @@
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+require('./src/database/connectdb');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.options('*', cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(morgan('dev'));
+
+require('./src/routes/index')(app);
+
+app.listen(PORT, () => {
+    console.log('Listening on port:', PORT);
+});

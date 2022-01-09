@@ -7,4 +7,5 @@ module.exports = (app) => {
     app.use('/product', Product);
     app.use('/category', Category);
     app.use('/order', Order);
+    app.get('/public/uploads/*');
 };

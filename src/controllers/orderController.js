@@ -122,6 +122,7 @@ const statistics = async (req, res) => {
                     totalOrder: {
                         $sum: 1,
                     },
+                    // done: { $count: '$status' },
                 },
             },
         ])
@@ -130,10 +131,34 @@ const statistics = async (req, res) => {
     res.status(200).json({ ...statistic });
 };
 
+const getUserOrder = async (req, res) => {
+    try {
+        const userOrderList = await Order.find({ user: req.params.id })
+            .populate('user', 'name')
+            .populate({
+                path: 'orderItems',
+                populate: {
+                    path: 'product',
+                    populate: {
+                        path: 'category',
+                    },
+                },
+            })
+            .sort({ dateOrder: -1 });
+        res.status(200).send(userOrderList);
+    } catch (error) {
+        res.status(400).send({
+            error: error.message,
+            success: false,
+        });
+    }
+};
+
 module.exports = {
     createOrder,
     getOrderDetail,
     updateStatusOrder,
     deleteOrder,
     statistics,
+    getUserOrder,
 };

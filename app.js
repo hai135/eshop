@@ -10,7 +10,7 @@ app.options('*', cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.static(__dirname));
+app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 
 require('./src/routes/index')(app);
 

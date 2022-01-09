@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --require dotenv/config app.js dotenv_config_path=config/.env",
+    "start": "node app.js",
+    "dev": "nodemon --require dotenv/config app.js dotenv_config_path=config/.env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

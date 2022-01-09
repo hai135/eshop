@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+require('dotenv').config();
 require('./src/database/connectdb');
 const app = express();
 const PORT = process.env.PORT || 3000;

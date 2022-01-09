@@ -1,5 +1,5 @@
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 require('./src/database/connectdb');
@@ -10,7 +10,7 @@ app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 
 require('./src/routes/index')(app);
